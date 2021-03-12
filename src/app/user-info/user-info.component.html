@@ -1,0 +1,51 @@
+<button 
+(click)="signout()">Sign Out</button>
+<div>
+    <legend>User's Information</legend> 
+ <div>
+	<div class="form-group row"> 
+		<label class="col-xs-6 col-form-label">Name</label>
+		<div class="col-xs-6">{{user.firstname}}</div>
+	</div>
+
+    <div class="form-group row"> 
+		<label class="col-xs-6 col-form-label">Email</label>
+		<div class="col-xs-6">{{user.email}}</div>
+	</div>
+
+	<div class="form-group row"> 
+		<label class="col-xs-6 col-form-label">Password</label>
+		<div class="col-xs-6">{{user.password}}</div>
+	</div>
+
+    <div class="form-group row"> 
+		<label class="col-xs-6 col-form-label">Phone</label>
+		<div class="col-xs-6">{{user.phone}}</div>
+	</div>
+
+    <div class="form-group row"> 
+		<label class="col-xs-6 col-form-label">Gender</label>
+		<div class="col-xs-6">
+			<span *ngIf="user.gender == 'male'">Male</span>
+			<span *ngIf="user.gender == 'female'">Female</span>
+		</div>
+	</div>
+
+</div> 
+<button 
+(click)="edit()">Edit</button>
+<button 
+(click)="confirmDelete()">Delete</button>
+</div>
+<div id="delete-confirm" class="del-modal">
+	<div class="del-modal-content">
+	  <div style="margin: 20px; text-align: center">
+		Are you sure you want to delete selected contact details?
+	  </div>
+	  <div style="text-align: center">
+		<button class="delete-submit" (click)="delete()">Yes</button>
+		<button class="cancel" (click)="deleteClose()">No</button>
+	  </div>
+	</div>
+  </div>
+<ng2-toasty></ng2-toasty>

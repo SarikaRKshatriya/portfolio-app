@@ -1,0 +1,192 @@
+<div id="edit-form" class="modal">
+    <form
+      class="modal-content animate"
+      (ngSubmit)="editContact(editForm.form.value)"
+      #editForm="ngForm"
+    >
+      <div
+        style="
+          display: flex;
+          background-color: #f1f1f1;
+          justify-content: space-between;
+        "
+      >
+        <span class="heading">Edit user information</span>
+        <span
+          onclick="document.getElementById('edit-form').style.display='none'"
+          class="close"
+          >&times;</span
+        >
+      </div>
+  
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          pattern="[a-zA-Z]|[a-zA-Z]"
+          name="firstname"
+          #firstname="ngModel"
+          ngModel="{{ previousfirstname }}"
+        />
+        <div
+          [hidden]="firstname.valid || firstname.pristine"
+          class="alert alert-danger"
+        >
+          <div class="error" [hidden]="!firstname.hasError('required')">
+            First Name is required
+          </div>
+          <div class="error" [hidden]="!firstname.hasError('pattern')">
+            Only alphabets allowed
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Email Address</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          ngModel
+          name="email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          #email="ngModel"
+          ngModel="{{ previousemail }}"
+        />
+        <div
+          class="error"
+          [hidden]="email.valid || email.pristine"
+          class="alert alert-danger"
+        >
+          <div class="error" [hidden]="!email.hasError('required')">
+            Email is required
+          </div>
+          <div class="error" [hidden]="!email.hasError('pattern')">
+            Email format should be
+            <small><b>name@abc.com</b></small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          ngModel
+          name="phone"
+          pattern="[0-9]*"
+          minlength="10"
+          maxlength="10"
+          #phone="ngModel"
+          ngModel="{{ previousphone }}"
+        />
+      </div>
+      <div
+        class="error"
+        [hidden]="phone.valid || phone.pristine"
+        class="alert alert-danger"
+      >
+        <div class="error" [hidden]="!phone.hasError('minlength')">
+          phone should be 10digit
+        </div>
+        <div class="error" [hidden]="!phone.hasError('required')">
+          phone is required
+        </div>
+        <div class="error" [hidden]="!phone.hasError('pattern')">
+          phone number should be only numbers
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Enter Password</label>
+        <input
+          type="password"
+          class="form-control"
+          required
+          ngModel
+          name="password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          minlength="8"
+          maxlength="20"
+          #password="ngModel"
+          ngModel="{{ previouspassword }}"
+        />
+      </div>
+      <div
+        class="error"
+        [hidden]="password.valid || password.pristine"
+        class="alert alert-danger"
+      >
+        <div class="error" [hidden]="!password.hasError('minlength')">
+            Password number should be have minimum lenght 8 
+        </div>
+        <div class="error" [hidden]="!password.hasError('required')">
+            Password is required
+        </div>
+        <div class="error" [hidden]="!password.hasError('pattern')">
+            Password number should be combination of lowercase,uppercase letters and numbers.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          required
+          ngModel
+          name="confirmPwd"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          minlength="8"
+          maxlength="20"
+          #confirmPwd="ngModel"
+          ngModel="{{ previousconfirmpassword }}"
+        />
+      </div>
+      <div
+        class="error"
+        [hidden]="confirmPwd.valid || confirmPwd.pristine"
+        class="alert alert-danger"
+      >
+        <div class="error" [hidden]="!confirmPwd.hasError('minlength')">
+            Password number should be have minimum lenght 8 
+        </div>
+        <div class="error" [hidden]="!confirmPwd.hasError('required')">
+            Password is required
+        </div>
+        <div class="error" [hidden]="!confirmPwd.hasError('pattern')">
+            Password number should be combination of alphabets and numbers.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <label for="Male">
+          <input
+            class="form-control"
+            type="radio"
+            id="male"
+            name="gender"
+            value="male"
+            ngModel
+            ngModel="{{ previousgender }}"
+          />
+          Male
+        </label>
+        <label for="Female">
+          <input
+            class="form-control"
+            type="radio"
+            id="female"
+            name="gender"
+            value="female"
+            ngModel
+          />
+          Female
+        </label>
+      </div>
+      <button class="submit" type="submit" [disabled]="!editForm.form.valid">
+        Save
+      </button><br>
+    </form>
+  </div>
+  <ng2-toasty></ng2-toasty>
